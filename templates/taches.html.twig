@@ -1,0 +1,47 @@
+{% extends "layout.html.twig" %}
+
+{% block main %}
+    <h1>Page des taches</h1>
+    <form action="/taches/create" method="POST">
+        <input type="text" name="nom" placeholder='Entrez le nom de la liste'>
+        <button class="button">Enregistrer la liste</button>
+    </form>
+    <p>{{ app.request.query.get('message') }}</p>
+    <section class="list-tache-container">
+        {% for list in listTache %}
+            <div class="list-card">
+                <h3>{{ list.getTitle() }}</h3>
+
+                <form action="{{ '/taches/delete/' ~ list.getId() }}">
+                    <button class="invisible-button">
+                        <svg class="delete-list" width="512" height="512" viewbox="0 0 512 512" fill="none">
+                            <rect x="37" y="122.07" width="120.308" height="500.03" rx="15" transform="rotate(-45 37 122.07)"/>
+                            <rect x="390.578" y="37" width="120.308" height="500.03" rx="15" transform="rotate(45 390.578 37)"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <ol>
+                    {% for tache in list.getTaches() %}
+                        <li style="color: {{ tache.getIsFinished() ? 'green' : 'red' }}">
+                            {{ tache.getTitle() }}
+
+                            <form action="{{ '/tache/finish/' ~ tache.getId() }}" method="POST" style="display: inline;">
+                                <button type="submit" class="button">
+                                    {{ tache.getIsFinished() ? 'Remettre à l\'état non terminé' : 'Marquer comme terminé' }}
+                                </button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ol>
+
+                <form action="{{ '/tache/create/' ~ list.getId() }}" method="POST">
+                    <input name="titre" type="text" placeholder="Nom de la tache">
+                    <button class="button">Enregistrer</button>
+                </form>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
+
+{# SVG: Scalable Vector Graphic #}

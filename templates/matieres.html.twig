@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block main %}
+    <h1>Page d'inscription</h1>
+
+    {{ form_start(formulaire) }}
+
+    {{ form_label(formulaire.nom) }}
+    {{ form_widget(formulaire.nom) }}
+    <div class="error">
+        {{ form_errors(formulaire.nom) }}
+    </div>
+
+    {{ form_label(formulaire.prenom) }}
+    {{ form_widget(formulaire.prenom) }}
+    <div class="error">
+        {{ form_errors(formulaire.prenom) }}
+    </div>
+
+    {{ form_label(formulaire.email) }}
+    {{ form_widget(formulaire.email) }}
+    <div class="error">
+        {{ form_errors(formulaire.email) }}
+    </div>
+
+    {{ form_label(formulaire.genre) }}
+    {{ form_widget(formulaire.genre) }}
+    <div class="error">
+        {{ form_errors(formulaire.genre) }}
+    </div>
+
+    {{ form_widget(formulaire.Envoyer) }}
+    
+    {{ form_end(formulaire) }}
+{% endblock %}
+

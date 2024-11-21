@@ -1,0 +1,34 @@
+{% set route =  path(app.request.attributes.get('_route'))%}
+<nav>
+	<a href={{path('home')}} class={{route == "/" ? "active" : ""}}>
+		Accueil
+	</a>
+
+	<a href={{path('contact')}} class={{route == "/contact" ? "active" : ""}}>
+		Contact
+	</a>
+
+	<a href={{path('taches')}} class={{route == "/taches" ? "active" : ""}}>
+		Taches
+	</a>
+	
+	<a href={{path('notes')}} class={{route == "/notes" ? "active" : ""}}>
+		Notes
+	</a>
+
+	<a href={{path('profile')}} class={{route == "/profile" ? "active" : ""}}>
+		Profile
+	</a>
+
+	<a href={{path('logout')}}>
+		Déconnexion
+	</a>
+
+	<a href={{path('connexion')}} class={{route == "/connexion" ? "active" : ""}}>
+		Connexion
+	</a>
+
+	<a href={{path('inscription')}} class={{route == "/inscription" ? "active" : ""}}>
+		Inscription
+	</a>
+</nav>
